@@ -1,0 +1,518 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="GBK">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>手机端模板</title>
+    <link rel="stylesheet" href="loading.css" type="text/css"/>
+    <script src="loading_top.js"></script>
+    <link rel="stylesheet" href="rest.css?1"/>
+    <script src="jquery.min.js"></script>
+    <script src="sketch.js?1112"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            -webkit-text-size-adjust:none;
+        }
+        body
+        {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            color:#4e4e4e;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ele{
+            background-size: 16rem;
+            background-image: url('ele.png?3');
+        }
+
+        #wapper{
+            max-width: 640px;
+            height:100%;
+            margin:0 auto;
+            background-image: url('bg.jpg');
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+        }
+        .banner{
+            background-size: 16rem 14.75rem;
+            width:16rem;
+            height:14.75rem;
+            margin:0 auto;
+            position: relative;
+            top:2rem;
+            background-image: url('banner.png');
+
+        }
+        .button-start{
+            background-size: 11.9rem 6.25rem;
+            width:11.9rem;
+            height:6.25rem;
+            background-image: url('button-start.png');
+            margin:0 auto;
+            position: relative;
+            left:1rem;
+        }
+
+        .page{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            display: none;
+        }
+
+        #plane{
+            width:300px;
+            height:306px;
+            background-image: url('plane.png');
+            background-size: 100% 100%;
+            margin:0 auto;
+        }
+        #colors_sketch,#plane img{
+            position: relative;
+            top:28px;
+            left:20px;
+        }
+        #tools{
+            padding-top:1rem;
+            position: relative;
+        }
+        .tool-btn{
+            display: inline-block;
+            margin-left:.5em
+        }
+        #redraw{
+            width:4.725rem;
+            height:2.75rem;
+            background-position: 0 0;
+        }
+        #back{
+            width:4.725rem;
+            height:2.75rem;
+            background-position: -10.45rem 0;
+        }
+        #selectColor{
+            width:4.725rem;
+            height:2.75rem;
+            background-position: -5.325rem 0;
+        }
+        #colorList{
+            width:4.725rem;
+            position: absolute;
+            bottom:3rem;
+            left:6rem;
+            display: none;
+        }
+        #colorList a{
+            display: block;
+            width:4.725rem;
+            height:1.5rem;
+            text-align: center;
+            line-height: 1.5rem;
+            color:#fff;
+            font-size:.7rem
+        }
+        #upload{
+            width:9.775rem;
+            height:2.325rem;
+            background-position: 0 -3.625rem;
+            display: block;
+            margin:.5rem auto 0
+        }
+        #lotto{
+            width:9.775rem;
+            height:3.575rem;
+            background-position: 0 -6.95rem;
+            margin:1rem auto 0;
+            display: none;
+        }
+        #bb{
+            width:3.5rem;
+            height:3.3rem;
+            background-position: right -3.15rem;
+            position: absolute;
+            right:0;
+            bottom:0;
+        }
+        .cover{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color: rgba(0,0,0,.8);
+            display: none;
+        }
+        #lottoBox{
+            width:10.75rem;
+            height:7.875rem;
+            background-position: 0 -12.075rem;
+            position: absolute;
+            left:50%;
+            margin-left:-5.375rem;
+            bottom:5rem;
+            -webkit-animation: rubberBand .8s linear 1s 1 alternate;
+            display: none;
+        }
+        @-webkit-keyframes rubberBand{
+            0%{-webkit-transform:scale3d(1,1,1);}
+            30%{-webkit-transform:scale3d(1.25,.75,1);}
+            40%{-webkit-transform:scale3d(0.75,1.25,1);}
+            50%{-webkit-transform:scale3d(1.15,.85,1);}
+            65%{-webkit-transform:scale3d(.95,1.05,1);}
+            75%{-webkit-transform:scale3d(1.05,.95,1);}
+            100%{-webkit-transform:scale3d(1,1,1);}
+        }
+        @-webkit-keyframes water{
+            0%{-webkit-transform:scale3d(0,0,0) }
+            100%{-webkit-transform:scale3d(1,1,1)}
+        }
+        #water{
+            width:7.525rem;
+            height:3.125rem;
+            background-position: 0 -20.7rem;
+            position: absolute;
+            bottom:7rem;
+            left:2rem;
+            -webkit-transform-origin:bottom center;
+            -webkit-animation: water .3s linear 1.3s 1 forwards;
+            -webkit-transform:scale3d(0,0,0);
+        }
+        .lottos{
+            text-align: center;
+            -webkit-transform:scale3d(0,0,0);
+            -webkit-animation: water .3s linear 1.5s 1 forwards;
+            margin-top:-6rem;
+            color:#f6c15a;
+            font-size:1rem;
+            -webkit-transform-origin:bottom center;
+            display: none;
+        }
+        .arc{
+            font-size:1rem;
+            color:#f6c15a
+        }
+        .tt{
+            font-size:1.2rem;
+            color:#ff5555
+        }
+        .close{
+            width:1.525rem;
+            height:1.3rem;
+            background-position: -14.675rem -7.175rem;
+            position: absolute;
+            right:1rem;
+            top:1rem
+        }
+        .login{
+            width:12.075rem;
+            height:15.525rem;
+            background-size: 12.075rem 15.525rem;
+            background-image: url('sigin.png');
+            margin:0 auto;
+            position: relative;
+            top:5rem;
+            display: none;
+        }
+        .rule{
+            width:12.075rem;
+            height:15.525rem;
+            background-size: 12.075rem 15.525rem;
+            background-image: url('rule-bg.png');
+            margin:0 auto;
+            position: relative;
+            top:5rem;
+            display: none;
+        }
+        .login .frm input,.login .frm{
+            width:7rem;
+            height:1.5rem;
+            position: absolute;
+            left:2rem;
+        }
+        .login .frm input{
+            border: none;
+            background-color: transparent;
+        }
+        .center{
+            text-align: center;
+        }
+        .sub-btns{
+            width:8rem;
+            height:2.325rem;
+            background-position: right bottom;
+            background-color: transparent;
+            border: none;
+        }
+        .sub{
+            width:8rem;
+            height:2.325rem;
+            position: absolute;
+            left:50%;
+            margin-left:-4rem;
+            bottom:3.5rem;
+        }
+        .rule-btn{
+            text-align: center;
+            font-size:1rem;
+            color:#3f3a39;
+            margin-top:.5rem;
+        }
+
+        .content{
+            width:10.075rem;
+            height:12.525rem;
+            margin:0 auto;
+            overflow-y:auto;
+            position: relative;
+            top:1rem;
+        }
+        .logo{
+            width:8.65rem;
+            height:1.05rem;
+            background-size: 8.65rem 1.05rem;
+            position: absolute;
+            left:1rem;
+            top:1rem;
+            background-image: url('logo.png');
+        }
+        .my-lotto{
+            width:5.525rem;
+            height:1.95rem;
+            background-position: right -20.45rem;
+            margin:-.5rem auto 0;
+            position: relative;
+        }
+        .myLottos{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color: rgba(0,0,0,.8);
+            display: none;
+        }
+        .backIndex{
+            width:5.525rem;
+            height:1.95rem;
+            background-position: right -9.2rem;
+            position: absolute;
+            left:50%;
+            margin-left:-2.7625rem;
+            top:8.5rem;
+        }
+
+
+    </style>
+
+
+</head>
+<body id="body" style="background-color: #000">
+
+    <div id="wapper">
+
+        <div class="page" id="home" style="display: block">
+            <div class="logo"></div>
+            <div class="banner"></div>
+            <div class="button-start"></div>
+            <div class="my-lotto ele"></div>
+            <div class="rule-btn">活动规则</div>
+        </div>
+
+        <div class="page" id="game">
+            <div class="logo"></div>
+            <div class="ele" id="bb"></div>
+            <div style="height:3rem"></div>
+            <div id="plane">
+                <canvas id="colors_sketch" width="258" height="260" style="background-color: #fff"></canvas>
+            </div>
+
+            <div id="tools">
+                <a href="#colors_sketch" data-clear="true" class="ele tool-btn" id="redraw"></a>
+                <a href="#colors_sketch" class="ele tool-btn" id="selectColor"></a>
+                <a href="#colors_sketch" data-cancel="true" class="ele tool-btn" id="back"></a>
+                <div id="colorList"></div>
+            </div>
+            <a href="#colors_sketch" data-download="png" class="ele" id="upload"></a>
+            <div class="ele" id="lotto"></div>
+
+        </div>
+
+        <div class="cover">
+            <div class="ele close"></div>
+        </div>
+
+        <div class="ele" id="lottoBox">
+            <div class="ele" id="water"></div>
+            <div class="lottos" id="lottos-yes">
+                <p class="arc">您的奖品是</p>
+                <p class="tt">秘密花园1本</p>
+            </div>
+            <div class="lottos" id="lottos-no">
+                <p>很遗憾</p>
+                <p>您还没有获得奖品</p>
+            </div>
+            <div class="ele backIndex"></div>
+        </div>
+
+        <div class="myLottos">
+            <div class="ele close"></div>
+            <div class="lottos" style="text-align: center; display: block;margin-top:7rem">
+                <p class="arc">恭喜亲获得了</p>
+                <p class="tt">秘密花园1本</p>
+            </div>
+            <div class="lottos" style="text-align: center;">
+                <p>很遗憾</p>
+                <p>幸运女神和你擦肩而过</p>
+            </div>
+        </div>
+
+
+        <div class="login">
+            <div class="frm" style="top:3.05rem"><input type="text"/></div>
+            <div class="frm" style="top:5.53rem"><input type="text"/></div>
+            <div class="sub"><input type="submit" value="" class="sub-btns ele"/></div>
+        </div>
+
+        <div class="rule">
+            <div class="content">幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过幸运女神和你擦肩而过</div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        (function (doc, win) {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+            var pc = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) { pc = false; break; }
+            }
+            var docEl = doc.documentElement,obj=document.getElementById('wapper'),sc = 640/1008,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        if (pc) {
+                            var clientWidth = obj.clientHeight * sc;
+                            if (!clientWidth) return;
+                            docEl.style.fontSize = 20 * (obj.clientHeight * sc / 320) + 'px';
+                            var _h = obj.clientHeight;
+                            obj.style.width = _h * sc + 'px';
+                        }
+                        else
+                        {
+                            var clientWidth = docEl.clientWidth;
+                            if (!clientWidth) return;
+                            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+                        }
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+        $(function(){
+
+
+
+            $('#colors_sketch').sketch();
+
+            $('body,html').on('touchstart',function(){
+                $('#colorList').hide();
+            })
+
+            $('#selectColor').on('touchstart',function(event){
+                event.stopPropagation();
+                $('#colorList').show();
+            })
+            $('#colorList').on('touchstart','a',function(event){
+                event.stopPropagation();
+                $(this).text('当前选择').siblings().text('')
+                setTimeout(function(){
+                    $('#colorList').hide();
+                },500)
+            });
+
+            $.each(['#f00', '#ffad02', '#0f0', '#0ff', '#00f', '#f0f', '#000'], function() {
+                $('#colorList').append("<a href='#colors_sketch' data-color='" + this + "' style='background: " + this + ";'></a> ");
+            });
+            var isLotto = 1; //0不中奖 1中奖
+            var islogin = 0; //0未登录 1登录
+
+
+            var game = {
+                showLogin : function(){
+                    if(!islogin)
+                    {
+                        $('.cover,.login').show();
+                    }
+                },
+                showRule : function(){
+                    $('.cover,.rule').show();
+                },
+                showLotto : function(){
+                    $('.cover,#lottoBox').show();
+                    if(isLotto)
+                    {
+                        $('#lottos-yes').show()
+                    }
+                    else
+                    {
+                        $('#lottos-no').show()
+                    }
+                },
+                start : function(){
+                    $('#home').fadeOut();
+                    $('#game').fadeIn()
+                },
+                myLotto : function(){
+                    $('.myLottos').show();
+                }
+            };
+
+
+            $('#lotto').on('touchstart',function(){
+                game.showLotto()
+            })
+
+            $('.button-start').on('touchstart',function(){
+                game.showLogin()
+            });
+
+            $('.sub-btns').on('touchstart',function(){
+                islogin = 1;
+                $('.cover,.login,.rule,#lottoBox,.myLottos').hide()
+                setTimeout(function(){
+                    game.start();
+                },300)
+            });
+
+            $('.rule-btn').on('touchstart',function(){
+                game.showRule()
+            });
+
+            $('.my-lotto').on('touchstart',function(){
+                game.myLotto();
+            });
+
+            $('.backIndex').on('touchstart',function(){
+                window.location.reload()
+            })
+
+            $('.close').on('touchend',function(){
+                $('.cover,.login,.rule,#lottoBox,.myLottos').hide()
+            })
+
+        })
+
+    </script>
+
+    <script src="loading_bottom.js" defer async="true"></script>
+</body>
+</html>
